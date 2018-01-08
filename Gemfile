@@ -17,14 +17,13 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'rspec-rails', '3.5.1'
   gem 'capybara', '2.8.0'
+  gem 'rspec-rails', '3.5.1'
   gem 'selenium-webdriver'
   gem 'sqlite3'
 
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
-
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
