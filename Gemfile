@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'pg', '0.18.4'
 gem 'rails', '~> 5.1.4'
 
 gem 'coffee-rails', '~> 4.2'
@@ -22,7 +23,7 @@ group :development, :test do
   gem 'capybara', '2.8.0'
   gem 'rspec-rails', '3.5.1'
   gem 'selenium-webdriver'
-  gem 'sqlite3'
+  # gem 'sqlite3'
 
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
@@ -38,6 +39,5 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
