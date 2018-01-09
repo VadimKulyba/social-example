@@ -38,7 +38,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: sample
+  database: test
   pool: 5
   username: social
   password: 12345678
