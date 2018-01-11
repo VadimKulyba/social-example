@@ -8,6 +8,7 @@ end
 gem 'pg', '0.18.4'
 gem 'rails', '~> 5.1.4'
 
+gem 'bcrypt-ruby'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
