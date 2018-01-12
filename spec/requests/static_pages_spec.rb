@@ -14,7 +14,7 @@ RSpec.feature 'static_pages_spec' do
       click_link 'Contact'
       expect(page).to have_title(full_title('Contact'))
 
-      visit signup_path
+      visit new_user_path
       expect(page).to have_title(full_title('Sign up'))
     end
 

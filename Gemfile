@@ -25,8 +25,8 @@ group :development, :test do
   gem 'rspec-rails', '3.5.1'
   gem 'selenium-webdriver'
   # gem 'sqlite3'
-
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :doc do
@@ -37,8 +37,4 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :production do
-  gem 'rails_12factor', '0.0.2'
 end

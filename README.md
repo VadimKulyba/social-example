@@ -1,5 +1,7 @@
-# Перевод Ruby on Rails Tutorial: пример приложения
-
-Это пример приложения для
-[*Ruby on Rails Tutorial*](http://railstutorial.org/)
-by [Майкл Хартл](http://michaelhartl.com/).
+Это пример блога на подобии твиттера
+    Реализован при помощи ROR tutorial(
+    -Взята система тестов
+    -И начальный каркас пользователя
+)
+-Также добавлены bootstrap teams
+-Бвза данных во всех окружениях postgresql

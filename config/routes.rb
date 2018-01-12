@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'signup', to: 'users#new'
+  resources :users
+  match '/singup', to: 'users#new', via: 'get'
 
   get 'home', to: 'static_pages#home'
   get 'help', to: 'static_pages#help'
