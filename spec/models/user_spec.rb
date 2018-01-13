@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:remember_token) }
 
   # show valid
   it { should be_valid }
@@ -74,5 +75,10 @@ RSpec.describe User, type: :model do
       let(:user_for_invalid_password) { found_user.authenticate('invalid') }
       it { should_not eq user_for_invalid_password }
     end
+  end
+  # remember token
+  describe 'remember token' do
+    before { @user.save }
+    it { expect(@user.remember_token).not_to be_blank }
   end
 end
