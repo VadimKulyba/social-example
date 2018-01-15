@@ -1,7 +1,15 @@
 # Entity users
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+   #:database_authenticatable, :registerable,
+         #:recoverable, :rememberable, :trackable, :validatable,
+  devise :omniauthable, :omniauth_providers => [:vkontakte]
+
   # validation exist
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates(:name, presence: true, length: { maximum: 50, minimum: 3 })
@@ -18,6 +26,14 @@ class User < ApplicationRecord
 
   def self.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.uid + '@vk.ru'
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+    end
   end
 
   private

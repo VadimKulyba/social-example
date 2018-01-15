@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'user_pages_spec' do
   subject { page }
 
-  describe 'profile page' do
+  describe '(show page) profile page' do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
@@ -11,7 +11,7 @@ RSpec.feature 'user_pages_spec' do
     it { should have_title(user.name) }
   end
 
-  describe 'sing up page' do
+  describe '(create page) sing up page' do
     before { visit new_user_path }
 
     it { should have_content('Sign up') }
@@ -30,6 +30,37 @@ RSpec.feature 'user_pages_spec' do
         fill_in 'Confirmation', with: 'foobar'
       end
       it { expect { click_button submit }.to change(User, :count).by(1) }
+    end
+  end
+
+  describe 'update page' do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+
+    it { should have_content('Update your page') }
+    it { should have_title('Edit user') }
+    it { should have_link('change', href: 'http://gravatar.com/emails') }
+
+    describe 'with invalid information' do
+      before { click_button 'Save changes' }
+      it { should have_content('error') }
+    end
+
+    describe 'valid information' do
+      let(:new_name) { 'new name' }
+      let(:new_email) { 'newemail@gmail.com' }
+      before do
+        fill_in 'Name',         with: new_name
+        fill_in 'Email',        with: new_email
+        fill_in 'Password',     with: user.password
+        fill_in 'Confirmation', with: user.password
+        click_button 'Save changes'
+      end
+
+      it { should have_title(new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      specify { expect(user.reload.name).to  eq new_name }
+      specify { expect(user.reload.email).to eq new_email }
     end
   end
 end
