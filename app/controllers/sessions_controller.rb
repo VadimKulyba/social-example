@@ -1,5 +1,5 @@
+# Controller session for in/out
 class SessionsController < ApplicationController
-
   def new; end
 
   def create

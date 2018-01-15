@@ -1,8 +1,11 @@
 # RailsControllerUsers
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: %i[edit update]
+  before_action :signed_in_user, only: %i[edit update index]
   before_action :correct_user, only: %i[edit update]
 
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
@@ -18,6 +21,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.provider = 'default'
     if @user.save
       sign_in(@user) # in
       flash[:success] = 'Welcome to the App!'

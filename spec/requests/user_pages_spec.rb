@@ -3,6 +3,23 @@ require 'rails_helper'
 RSpec.feature 'user_pages_spec' do
   subject { page }
 
+  describe 'index' do
+    before do
+      sign_in(FactoryGirl.create(:user))
+      FactoryGirl.create(:user, name: 'Bob', email: 'bob@example.com')
+      FactoryGirl.create(:user, name: 'Ben', email: 'ben@example.com')
+      visit users_path
+    end
+
+    it { should have_title('All users') }
+    it { should have_content('All users') }
+    it 'should list each user' do
+      User.all.each do |user|
+        expect(user).to have_selector('li', text: user.name)
+      end
+    end
+  end
+
   describe '(show page) profile page' do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
@@ -35,6 +52,7 @@ RSpec.feature 'user_pages_spec' do
 
   describe 'update page' do
     let(:user) { FactoryGirl.create(:user) }
+    before { sign_in(user) }
     before { visit edit_user_path(user) }
 
     it { should have_content('Update your page') }

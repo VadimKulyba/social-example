@@ -104,6 +104,22 @@ footer ul li {
   }
 }
 
+.gray {
+  color: grey;
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid royalblue;
+    &:last-child {
+      border-bottom: 1px solid royalblue;
+    }
+  }
+}
 
 /* sidebar */
 
