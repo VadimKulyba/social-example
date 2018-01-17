@@ -12,11 +12,15 @@ RSpec.describe User, type: :model do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
-  it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
-  it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
   it { should respond_to(:remember_token) }
+  # params for secure methods
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+  # for authorize methods
+  it { should respond_to(:authenticate) }
+  # for microposts
+  it { should respond_to(:microposts) }
 
   # show valid
   it { should be_valid }
@@ -91,5 +95,26 @@ RSpec.describe User, type: :model do
   describe 'remember token' do
     before { @user.save }
     it { expect(@user.remember_token).not_to be_blank }
+  end
+  # micropost
+  describe 'associations' do
+    before { @user.save }
+    let!(:old_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+    end
+    let!(:new_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+    end
+    it 'sort on date test' do
+      expect(@user.microposts.to_a).to eq [new_micropost, old_micropost]
+    end
+    it 'destroy microposts with user' do
+      microposts = @user.microposts.to_a
+      @user.destroy
+      expect(microposts).not_to be_empty
+      microposts.each do |micropost|
+        expect(Micropost.where(id: micropost.id)).to be_empty
+      end
+    end
   end
 end

@@ -22,10 +22,18 @@ RSpec.feature 'user_pages_spec' do
 
   describe '(show page) profile page' do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:sms1) { FactoryGirl.create(:micropost, user: user, content: 'Hi') }
+    let!(:sms2) { FactoryGirl.create(:micropost, user: user, content: 'Hello') }
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe 'have microposts?' do
+      it { should have_content(sms1.content) }
+      it { should have_content(sms2.content) }
+      it { should have_content(user.microposts.count) }
+    end
   end
 
   describe '(create page) sing up page' do
