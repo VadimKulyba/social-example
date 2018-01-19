@@ -1,5 +1,27 @@
 <% provide(:title, 'Home') %>
-<div class="center jumbotron">
+
+<% if signed_in? %>
+  <div class="row">
+    <div class="col-md-4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+    </div>
+    <div class="col-md-8">
+      <section>
+        <%= render 'shared/micropost_form' %>
+        <h3 class="center">Micropost Feed</h3>
+        <% if @feed_items.any? %>
+          <ol class="microposts">
+            <%= render partial: 'shared/feed_item', collection: @feed_items %>
+          </ol>
+          <%= will_paginate @feed_items %>
+        <% end %>
+      </section>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
   <h1>Welcome to the Sample App</h1>
 
   <h3 class="gray">
@@ -17,8 +39,11 @@
     <%= link_to image_tag("facebook.png", alt: "Facebook"),
                 '#' %>
   </div>
+  <br>
+  <div class="center">
+    <%= link_to image_tag("rails.png", alt: "Rails"),
+                'http://rubyonrails.org/' %>
+  </div>
 </div>
-<div class="center">
-  <%= link_to image_tag("rails.png", alt: "Rails"),
-              'http://rubyonrails.org/' %>
-</div>
+
+<% end %>

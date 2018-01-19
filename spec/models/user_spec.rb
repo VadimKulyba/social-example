@@ -21,6 +21,7 @@ RSpec.describe User, type: :model do
   it { should respond_to(:authenticate) }
   # for microposts
   it { should respond_to(:microposts) }
+  it { should respond_to(:feed) }
 
   # show valid
   it { should be_valid }
@@ -99,14 +100,15 @@ RSpec.describe User, type: :model do
   # micropost
   describe 'associations' do
     before { @user.save }
-    let!(:old_micropost) do
+    let!(:old_post) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
     end
-    let!(:new_micropost) do
+    let!(:new_post) do
       FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
     end
+
     it 'sort on date test' do
-      expect(@user.microposts.to_a).to eq [new_micropost, old_micropost]
+      expect(@user.microposts.to_a).to eq [new_post, old_post]
     end
     it 'destroy microposts with user' do
       microposts = @user.microposts.to_a
@@ -116,5 +118,15 @@ RSpec.describe User, type: :model do
         expect(Micropost.where(id: micropost.id)).to be_empty
       end
     end
+    # dont work, dont no000000
+    # describe 'status' do
+    #   let(:unfollowed_post) do
+    #     FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+    #   end
+    #
+    #   it(:feed) { should include(new_micropost) }
+    #   it(:feed) { should include(old_micropost) }
+    #   it(:feed) { should_not include(unfollowed_post) }
+    # end
   end
 end

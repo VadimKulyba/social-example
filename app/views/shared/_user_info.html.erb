@@ -1,0 +1,23 @@
+<h1>
+  <div>
+    <img src="<%= avatar_for(current_user)%>" class="img-circle">
+  </div>
+</h1>
+<div class="center">
+  <div>
+    <h3>
+      <%= current_user.name %>
+    </h3>
+  </div>
+  <span>
+    <h5>
+      <%= link_to "view my profile", current_user %>
+    </h5>
+  </span>
+  <span>
+    <h5 class="gray">
+      <%= pluralize(current_user.microposts.count, "micropost") %>
+    </h5>
+  </span>
+</div>
+

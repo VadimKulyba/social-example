@@ -23,6 +23,22 @@ RSpec.feature 'static_pages_spec' do
 
       it { should have_content('Sample App') }
       it { should have_title(full_title('Home')) }
+
+      describe  do
+        let(:user) { FactoryGirl.create(:user) }
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "Hi")
+          FactoryGirl.create(:micropost, user: user, content: "Hello")
+          sign_in user
+          visit root_path
+        end
+
+        it "should render feed" do
+          user.feed.each do |item|
+            expect(page).to have_selector("li##{item.id}", text: item.content)
+          end
+        end
+      end
     end
 
     describe 'Help page' do
