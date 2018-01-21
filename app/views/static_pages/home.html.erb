@@ -6,11 +6,15 @@
       <section>
         <%= render 'shared/user_info' %>
       </section>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
     </div>
     <div class="col-md-8">
       <section>
         <%= render 'shared/micropost_form' %>
-        <h3 class="center">Micropost Feed</h3>
+        <br>
+        <h3 class="center">Post band</h3>
         <% if @feed_items.any? %>
           <ol class="microposts">
             <%= render partial: 'shared/feed_item', collection: @feed_items %>

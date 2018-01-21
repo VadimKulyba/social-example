@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :users
-  resources :microposts, only: %i[create destroy]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  resources :microposts, only: %i[create destroy] #do
+  #  resources :comments
+  #end
+
+  resources :relationships, only: %i[create destroy]
 
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'

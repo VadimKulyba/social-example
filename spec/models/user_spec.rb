@@ -22,6 +22,7 @@ RSpec.describe User, type: :model do
   # for microposts
   it { should respond_to(:microposts) }
   it { should respond_to(:feed) }
+  it { should respond_to(:relationships) }
 
   # show valid
   it { should be_valid }

@@ -21,7 +21,7 @@ RSpec.feature 'static_pages_spec' do
     describe 'Home page' do
       before { visit root_path }
 
-      it { should have_content('Sample App') }
+      it { should have_content('RoRBlog') }
       it { should have_title(full_title('Home')) }
 
       describe  do

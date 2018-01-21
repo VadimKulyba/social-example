@@ -193,3 +193,24 @@ aside {
 
 /* show page */
 
+.stats {
+  overflow: auto;
+  text-align: center;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid darkgray;
+    color: royalblue;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: royalblue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}

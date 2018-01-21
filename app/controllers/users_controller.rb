@@ -1,6 +1,7 @@
 # RailsControllerUsers
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: %i[edit update index destroy]
+  before_action :signed_in_user, only: %i[edit update index destroy
+                                          following followers]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: :destroy
 
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -19,6 +20,20 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def following
+    @title = 'Following'
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page], per_page: 12)
+    render 'show_follow'
+  end
+
+  def followers
+    @title = 'Followers'
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page], per_page: 12)
+    render 'show_follow'
   end
 
   def create
