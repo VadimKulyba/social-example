@@ -25,9 +25,9 @@ class User < ApplicationRecord
   validates(:password, length: { minimum: 6 })
   has_secure_password
 
-  # micropost methods
-  def feed
-    Micropost.where('user_id = ?', id)
+  # micropost methods (wall for any users)
+  def wall
+    Micropost.from_users_followed_by(self)
   end
 
   # relationship

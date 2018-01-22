@@ -14,7 +14,7 @@
       <section>
         <%= render 'shared/micropost_form' %>
         <br>
-        <h3 class="center">Post band</h3>
+        <h3 class="center">Wall posts</h3>
         <% if @feed_items.any? %>
           <ol class="microposts">
             <%= render partial: 'shared/feed_item', collection: @feed_items %>
