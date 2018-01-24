@@ -1,5 +1,5 @@
 @import "bootstrap";
-@import "cosmo";
+@import "superhero";
 
 /* universal */
 
@@ -55,6 +55,10 @@ p {
   line-height: 1.7em;
 }
 
+.orange {
+  color: orange;
+}
+
 /* header */
 
 #logo {
@@ -87,7 +91,7 @@ footer ul {
 }
 
 footer a {
-  color: blue;
+  color: orange;
 }
 
 footer ul li {
@@ -137,15 +141,18 @@ aside {
 
 /* microposts */
 
-.microposts {
+.comments , .microposts {
   list-style: none;
   margin: 10px 0 0 0;
 
   li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid orange;
   }
 }
+
+
+
 .content {
   display: block;
 }
@@ -172,19 +179,19 @@ aside {
 .hide + label,
 .hide:checked + label {
   padding: 0;
+  font-size: 20px;
   color: green;
   cursor: pointer;
   border-bottom: 1px dotted green;
 }
 /* вид текста label при активном переключателе */
 .hide:checked + label {
-  color: blue;
+  color: orange;
   border-bottom: 0;
 }
 /* когда чекбокс активен показываем блоки с содержанием  */
 .hide:checked + label + div {
   display: block;
-  background: white;
   /*-moz-box-shadow: inset 3px 3px 10px;
   -webkit-box-shadow: inset 3px 3px 10px;
   box-shadow: inset 3px 3px 10px;*/
@@ -196,18 +203,19 @@ aside {
 .stats {
   overflow: auto;
   text-align: center;
+  font-size: 20px;
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid darkgray;
-    color: royalblue;
+    border-left: 1px solid orange;
+    color: orange;
     &:first-child {
       padding-left: 0;
       border: 0;
     }
     &:hover {
       text-decoration: none;
-      color: royalblue;
+      color: orange;
     }
   }
   strong {

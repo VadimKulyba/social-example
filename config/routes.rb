@@ -6,9 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :microposts, only: %i[create destroy] #do
-  #  resources :comments
-  #end
+  resources :microposts, only: %i[create destroy]
+  resources :comments, only: %i[create destroy]
 
   resources :relationships, only: %i[create destroy]
 

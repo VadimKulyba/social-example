@@ -1,0 +1,29 @@
+<li>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1">
+      <a href="<%= user_path(comment.user)%>">
+        <img src="<%= avatar_for(comment.user, 50) %>" class="img-circle">
+      </a>
+    </div>
+    <div class="col-md-10">
+      <span>
+        <a href="<%= user_path(comment.user)%>">
+          <%= comment.user.name %>
+        </a>
+      </span>
+      <span class="content"><%= comment.body %></span>
+      <span class="timestamp">
+        Comment <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
+      <span>
+        <% if current_user?(comment.user) || current_user.admin? %>
+          <%= link_to 'delete', comment, method: :delete,
+                      data: { confirm: 'You sure'},
+                      title: comment.body %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</li>

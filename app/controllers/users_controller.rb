@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 10)
+    @comments = {}
+    @microposts.to_a.each do |micropost|
+      @comments[micropost.id] = micropost.comments
+    end
+    @comments
   end
 
   def new

@@ -28,7 +28,7 @@
   <div class="center jumbotron">
   <h1>Welcome to the RoRBlog</h1>
 
-  <h3 class="gray">
+  <h3 class="orange">
     What happens in world ROR developments and simply world you read in the RoRBlog,
     and What people think about this news or event<br>
     If you develop interesting app, you should tell about it
@@ -36,7 +36,7 @@
 
   <%= link_to "Sing up now!", new_user_path, class: "btn btn-large btn-success" %>
   <div>
-    <h3 class="gray">Also you authorize from:</h3>
+    <h3 class="orange">Also you authorize from:</h3>
     <%= link_to image_tag("vkontakte.png", alt: "Vk"),
                 user_vkontakte_omniauth_authorize_path %>
     or
@@ -44,10 +44,6 @@
                 '#' %>
   </div>
   <br>
-  <div class="center">
-    <%= link_to image_tag("rails.png", alt: "Rails"),
-                'http://rubyonrails.org/' %>
-  </div>
 </div>
 
 <% end %>
