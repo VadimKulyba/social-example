@@ -3,7 +3,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section>
-      <%= render 'shared/user_info' %>
+      <%= render 'shared/user_info', :object => current_user  %>
     </section>
     <section>
       <%= render 'shared/stats' %>
@@ -11,9 +11,15 @@
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-            <a href="<%= user_path(user)%>">
-              <img src="<%= avatar_for(user, 52) %>" class="img-circle">
-            </a>
+            <% if user.image.nil? %>
+              <a href="<%= user_path(user)%>">
+                <img src="<%= avatar_for(user, 52) %>" class="img-circle">
+              </a>
+            <% else %>
+              <a href="<%= user_path(user)%>">
+                <img src="<%= user.image %>" class="img-circle" width="52" height="52">
+              </a>
+            <% end %>
           <% end %>
         </div>
       <% end %>

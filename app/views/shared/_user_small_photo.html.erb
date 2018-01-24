@@ -1,0 +1,10 @@
+
+<% if object.user.image.nil? %>
+  <a href="<%= user_path(object.user)%>">
+    <img src="<%= avatar_for(object.user, 52) %>" class="img-circle">
+  </a>
+<% else %>
+  <a href="<%= user_path(object.user)%>">
+    <img src="<%= object.user.image %>" class="img-circle" width="52" height="52">
+  </a>
+<% end %>

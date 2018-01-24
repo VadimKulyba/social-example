@@ -4,8 +4,17 @@
   <div class="row">
     <div class="col-md-4">
       <section>
-        <%= render 'shared/user_info' %>
+        <%= render 'shared/user_info', :object => current_user %>
       </section>
+
+      <section class="center">
+          <span>
+            <h5>
+              <%= link_to "view my profile", current_user %>
+            </h5>
+          </span>
+      </section>
+
       <section>
         <%= render 'shared/stats' %>
       </section>

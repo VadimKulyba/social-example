@@ -1,9 +1,7 @@
 <li id="<%= feed_item.id %>">
   <div class="row">
     <div class="col-md-1">
-      <a href="<%= user_path(feed_item.user)%>">
-        <img src="<%= avatar_for(feed_item.user, 52) %>" class="img-circle">
-      </a>
+      <%= render 'shared/user_small_photo', :object => feed_item  %>
     </div>
     <div class="col-md-11">
       <span class="user">

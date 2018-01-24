@@ -3,9 +3,7 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-1">
-      <a href="<%= user_path(comment.user)%>">
-        <img src="<%= avatar_for(comment.user, 50) %>" class="img-circle">
-      </a>
+      <%= render 'shared/user_small_photo', :object => comment  %>
     </div>
     <div class="col-md-10">
       <span>

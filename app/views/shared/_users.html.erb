@@ -1,7 +1,11 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <img src="<%= avatar_for user, 52 %>" class="img-circle">
+      <% if user.image.nil? %>
+        <img src="<%= avatar_for user, 52 %>" class="img-circle">
+      <% else %>
+        <img src="<%= user.image %>" class="img-circle" height="52" width="52">
+      <% end %>
       <%= link_to user.name, user %>
       <% if current_user.admin? && !current_user?(user) %>
         <%= link_to 'delete', user, method: :delete,

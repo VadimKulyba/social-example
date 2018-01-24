@@ -3,15 +3,7 @@
 <div class="row">
   <aside class="col-sm-4">
     <section>
-      <h1>
-        <div>
-          <img src="<%= avatar_for(@user)%>" class="img-circle">
-        </div>
-        </br>
-        <div>
-          <%= @user.name %>
-        </div>
-      </h1>
+      <%= render 'shared/user_info', :object => @user %>
     </section>
     <section>
       <%= render 'shared/stats' %>
