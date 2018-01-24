@@ -15,12 +15,19 @@
       <div class="form-group">
         <%= form.text_field( :email, placeholder: 'Email', class: 'form-control') %>
       </div>
-      <div class="form-group">
-        <%= form.password_field( :password, placeholder: 'Password', class: 'form-control') %>
-      </div>
-      <div class="form-group">
-        <%= form.password_field( :password_confirmation, placeholder: 'Confirmation', class: 'form-control') %>
-      </div>
+      <% if @user.provider == 'default' %>
+        <div class="form-group">
+          <%= form.password_field( :password, placeholder: 'Password', class: 'form-control') %>
+        </div>
+        <div class="form-group">
+          <%= form.password_field( :password_confirmation, placeholder: 'Confirmation', class: 'form-control') %>
+        </div>
+      <% else %>
+        <% device = Devise.friendly_token[0, 20] %>
+        <% @user.update(password: device, password_confirmation: device ) %>
+        <%= form.hidden_field :password %>
+        <%= form.hidden_field :password_confirmation %>
+      <% end %>
       <%= form.submit('Save changes',class: 'btn btn-large btn-success') %>
     <% end %>
   </div>
